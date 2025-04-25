@@ -1,10 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for
-import lyricsgenius  # You can use the Genius API to get lyrics
+import lyricsgenius  # Make sure to install the lyricsgenius library
 
 app = Flask(__name__)
 
-# Initialize Genius API client
-genius = lyricsgenius.Genius("jTk1u6luBLwPvflNUcYdfqY46YkLeFQLecTT3JjWaafjb-f9bLAt-AkTdJbWZJI5 ")
+# Initialize Genius API client with a valid access token
+genius = lyricsgenius.Genius("jTk1u6luBLwPvflNUcYdfqY46YkLeFQLecTT3JjWaafjb-f9bLAt-AkTdJbWZJI5 ")  # Update with your new token
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
