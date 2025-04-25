@@ -1,14 +1,24 @@
+from flask import Flask, render_template, request
 import lyricsgenius
 
-genius = lyricsgenius.Genius(api_key)
+app = Flask(__name__)
+genius = lyricsgenius.Genius("jTk1u6luBLwPvflNUcYdfqY46YkLeFQLecTT3JjWaafjb-f9bLAt-AkTdJbWZJI5")
 
-name = input("Enter Artist Name: ")
-song_title = input("Enter Song Title: ")
+@app.route("/", methods=["GET", "POST"])
+def index():
+    lyrics = ""
+    if request.method == "POST":
+        artist = request.form["artist"]
+        title = request.form["title"]
+        try:
+            song = genius.search_song(title, artist)
+            if song:
+                lyrics = song.lyrics
+            else:
+                lyrics = "Lyrics not found."
+        except Exception as e:
+            lyrics = f"Error: {str(e)}"
+    return render_template("index.html", lyrics=lyrics)
 
-# Search for the song directly using artist and song name
-song = genius.search_song(song_title, name)
-
-if song:
-    print(song.lyrics)
-else:
-    print("Song not found.")
+if __name__ == "__main__":
+    app.run(debug=True)
