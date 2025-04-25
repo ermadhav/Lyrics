@@ -15,13 +15,14 @@ def index():
         # Search for the song lyrics
         song = genius.search_song(song_title, artist_name)
         if song:
+            # Redirect to the lyrics page with artist, title, and lyrics as URL parameters
             return redirect(url_for('lyrics', artist=artist_name, title=song_title, lyrics=song.lyrics))
         else:
             return render_template('index.html', error="Lyrics not found!")
     
     return render_template('index.html')
 
-@app.route('/lyrics')
+@app.route('/lyrics', methods=['GET'])
 def lyrics():
     artist = request.args.get('artist')
     title = request.args.get('title')
