@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Lyrics Finder</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<style>
+    body {
+        background: #121212;
+        color: #f0f0f0;
+        font-family: "Segoe UI", sans-serif;
+        display: flex;
+        justify-content: center;
+        padding: 30px;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 800px;
+        text-align: center;
+    }
+
+    input,
+    button {
+        padding: 10px;
+        margin: 5px;
+        width: 80%;
+        border-radius: 5px;
+        border: none;
+        font-size: 1em;
+    }
+
+    button {
+        background-color: #1db954;
+        color: white;
+        cursor: pointer;
+    }
+
+    .lyrics {
+        margin-top: 20px;
+        background: #1e1e1e;
+        padding: 20px;
+        white-space: pre-wrap;
+        border-radius: 10px;
+        max-height: 500px;
+        overflow-y: auto;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <h1>🎵 Lyrics Finder</h1>
+        <form method="POST">
+            <input type="text" name="artist" placeholder="Artist Name" required />
+            <input type="text" name="title" placeholder="Song Title" required />
+            <button type="submit">Get Lyrics</button>
+        </form>
+        <pre class="lyrics">{{ lyrics }}</pre>
+    </div>
+</body>
+
+</html>
