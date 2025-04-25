@@ -4,7 +4,7 @@ import lyricsgenius  # You can use the Genius API to get lyrics
 app = Flask(__name__)
 
 # Initialize Genius API client
-genius = lyricsgenius.Genius("your_genius_api_key")
+genius = lyricsgenius.Genius("jTk1u6luBLwPvflNUcYdfqY46YkLeFQLecTT3JjWaafjb-f9bLAt-AkTdJbWZJI5 ")
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
